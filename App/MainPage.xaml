@@ -9,6 +9,21 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <NavigationView x:Name="NavigationViewControl" Grid.Column="0" IsBackButtonVisible="Collapsed" 
+                        SelectionChanged="navigationHandler"
+                        >
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="History" x:Name="History" />
+                <NavigationViewItem Content="Add" x:Name="Add" />
+            </NavigationView.MenuItems>
+        </NavigationView>
+        <ContentControl VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Content="{x:Bind ViewModel.currentControl, Mode=OneWay}"/>
     </Grid>
 </Page>
