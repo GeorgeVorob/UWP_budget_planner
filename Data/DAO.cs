@@ -18,7 +18,7 @@ namespace Data
         private static BudgetContext GetDb()
         {
             string dbPath = "Data Source=" + Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-        "myDatabaseName.db");
+        "BudgetDb.db");
             var context = new BudgetContext(dbPath);
             if (context.Database.EnsureCreated())
             {
@@ -66,7 +66,7 @@ namespace Data
         {
             using (var db = GetDb())
             {
-                // пишут что это очень плохо работает для больших таблиц, но пойдет
+                // пишут что это очень плохо работает для больших таблиц, но тут думаю пойдет
                 db.operations.RemoveRange(db.operations);
                 db.SaveChanges();
             }

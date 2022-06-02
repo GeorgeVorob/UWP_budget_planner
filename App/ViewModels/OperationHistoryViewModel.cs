@@ -2,12 +2,6 @@
 using Model.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
 
 namespace App.ViewModels
 {
@@ -30,7 +24,6 @@ namespace App.ViewModels
         public OperationHistoryViewModel(bool initDataRequest = false)
         {
             if (initDataRequest) Operations = DAO.GetOperations();
-
         }
         public void ResetOperations()
         {
@@ -42,9 +35,10 @@ namespace App.ViewModels
                 new Operation()
                 {
                     Type = OperationType.Outcome,
-                    Amount = 3.1415926,
+                    Amount = 3,
                     Category = "Транспорт",
                     Date = DateTimeOffset.Now,
+                    Comment = "Комментарий"
                 },
                 new Operation()
                 {

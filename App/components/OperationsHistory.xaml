@@ -10,10 +10,23 @@
     >
 
     <Grid
-        BorderBrush="Red" BorderThickness="2" Margin="10,10,10,10"
+        BorderBrush="Gray" BorderThickness="2" Margin="10,10,10,10"
         >
+        <TextBlock
+            x:Name="textBlock"
+            HorizontalAlignment="Right"
+            TextWrapping="Wrap" Text="{x:Bind ViewModel.Message, Mode=OneWay}" VerticalAlignment="Bottom" Width="340" Height="266"/>
         <Button x:Name="button" Content="Сбросить базу" HorizontalAlignment="Right" VerticalAlignment="Top" Click="button_Click"/>
         <Button x:Name="saveButton" Content="Сохранить изменения" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,65,0,0" Click="save_handler"/>
+        <TextBlock TextWrapping="WrapWholeWords" Width="450" HorizontalAlignment="Left" FontSize="16">
+            Практически впервые делал интерфейс на UWP (HR написала первой,
+            поэтому верю\надеюсь что это требоваие само по себе не сильно горит).
+            За 3 дня выплакал этот какой-никакой UI, хотя в вопросе всего остального (разделения логики, работы с данными) такого ужаса от сделанной работы нет.
+            Доп. задание про редактирование данных сделал прямо здесь, выводя записи сразу в форме.
+        </TextBlock>
+        <TextBlock Foreground="Red" HorizontalAlignment="Right" Width="200" TextWrapping="WrapWholeWords" VerticalAlignment="Center">
+            При первом запуске этот экран без записей, нажать на кнопку "Сбросить базу" для очистки и заполнения стартовыми значениями.
+        </TextBlock>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,153,222,10">
             <ListView ItemsSource="{x:Bind ViewModel.Operations, Mode=OneWay}" Width="1094" Height="556"
             >
@@ -21,10 +34,15 @@
                     <DataTemplate x:DataType="model:Operation">
                         <Grid>
                             <StackPanel Margin="10" BorderBrush="Black" BorderThickness="1">
+                                <TextBlock Text="Категория:"/>
                                 <TextBox Text="{x:Bind Category, Mode=TwoWay}"/>
+                                <TextBlock Text="Income\Outcome:"/>
                                 <TextBlock Text="{x:Bind Type, Mode=OneWay}"/>
+                                <TextBlock Text="Сумма:"/>
                                 <TextBox Text="{x:Bind Amount, Mode=TwoWay}"/>
+                                <TextBlock Text="Дата:"/>
                                 <DatePicker SelectedDate="{x:Bind Date, Mode=TwoWay}"/>
+                                <TextBlock Text="Комментарий:"/>
                                 <TextBox Text="{x:Bind Comment, Mode=TwoWay}"/>
                             </StackPanel>
                         </Grid>
@@ -32,7 +50,5 @@
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollViewer>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="148,34,0,0" TextWrapping="Wrap" Text="{x:Bind ViewModel.Message, Mode=OneWay}" VerticalAlignment="Top"/>
-
     </Grid>
 </UserControl>
