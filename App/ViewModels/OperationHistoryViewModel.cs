@@ -11,7 +11,7 @@ namespace App.ViewModels
         public List<Operation> Operations
         {
             get { return _operations; }
-            set { _operations = value; OnPropertyChanged("Operations"); }
+            set { _operations = value; OnPropertyChanged("Operations"); UpdateSumm(); }
         }
 
         private string _message;
@@ -24,6 +24,26 @@ namespace App.ViewModels
         public OperationHistoryViewModel(bool initDataRequest = false)
         {
             if (initDataRequest) Operations = DAO.GetOperations();
+            UpdateSumm();
+        }
+        private string _summ { get; set; }
+        public string Summ {
+            get { return _summ; }
+            set
+            {
+                _summ = value;
+                OnPropertyChanged("Summ");
+            }
+        }
+        public void UpdateSumm()
+        {
+            double _summ = 0;
+            foreach (Operation operation in Operations)
+            {
+                if (operation.Type == OperationType.Income) _summ += operation.Amount;
+                else _summ -= operation.Amount;
+            }
+            Summ =  "Итого на счету: " + _summ.ToString();
         }
         public void ResetOperations()
         {
@@ -56,7 +76,7 @@ namespace App.ViewModels
                 }
             });
                 Operations = DAO.GetOperations();
-
+                UpdateSumm();
                 Message = "База очищена и заполнена стартовыми данными";
             }
             catch (ArgumentException e)
