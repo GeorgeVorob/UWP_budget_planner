@@ -24,6 +24,7 @@
                 <NavigationViewItem Content="Add" x:Name="Add" />
             </NavigationView.MenuItems>
         </NavigationView>
-        <ContentControl VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Content="{x:Bind ViewModel.currentControl, Mode=OneWay}"/>
+        <ContentControl
+            Grid.Column="1" Content="{x:Bind ViewModel.currentControl, Mode=OneWay}" Margin="10,10,10,10"/>
     </Grid>
 </Page>

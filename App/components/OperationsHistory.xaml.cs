@@ -1,5 +1,6 @@
 ﻿using App.ViewModels;
 using Data;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,8 +26,16 @@ namespace App
         public OperationsHistory()
         {
             this.InitializeComponent();
-            ViewModel = new OperationHistoryViewModel();
-            ViewModel.text = DAO.GetData();
+            ViewModel = new OperationHistoryViewModel(true);
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.ResetOperations();
+        }
+        private void save_handler(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SendOperations();
         }
     }
 }

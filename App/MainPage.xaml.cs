@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Threading.Tasks;
 using App.ViewModels;
+using Windows.UI.ViewManagement;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x419
 
@@ -31,9 +32,11 @@ namespace App
         {
             this.InitializeComponent();
             ViewModel = new MainPageViewModel();
+            ApplicationView.PreferredLaunchViewSize = new Size(900, 900);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
         }
 
-        // По требования задания страница должна быть одна, поэтому смену содержимого сделал через ContentControl
+        // По требованию задания страница должна быть одна, поэтому смену содержимого сделал через ContentControl
         // TODO: вынести сопоставление пунктов меню и UserControlов в список
         private void navigationHandler(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
